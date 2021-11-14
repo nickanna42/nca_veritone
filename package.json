@@ -1,0 +1,25 @@
+{
+  "name": "nca_veritone",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickanna42/nca_veritone.git"
+  },
+  "author": "Nicholas Anna",
+  "license": "MIT",
+  "engines": {
+    "node": "~16.13.0",
+    "npm": "~8.1.3"
+  },
+  "dependencies": {},
+  "scripts": {
+    "frontend-build": "npm run build --workspace=frontend && rm server/public -Rf && cp frontend/build server/public -r",
+    "frontend-start": "npm run start --workspace=frontend",
+    "server-start": "npm run frontend-build && npm run start --workspace=server"
+  },
+  "workspaces": [
+    "server",
+    "frontend"
+  ]
+}
