@@ -11,7 +11,7 @@ const fetchWrapper = (url, options={}) => async (dispatch) =>{
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      ...(options.headers || {}),
+      ...options.headers,
     }, 
   });
   dispatch(decUiBusy)
@@ -34,12 +34,49 @@ export const postItem = (newItem) => async (dispatch) => {
   const newId = await dispatch(fetchWrapper(
     '/api/list/item',
     {
-      method: "POST",
-      data: JSON.stringify(sendItem),
+      method: 'POST',
+      body: JSON.stringify(sendItem),
     }
-  )).then(resp => resp.json);
+  )).then(resp => resp.json());
 
   sendItem.id = newId;
 
   dispatch(addItem(sendItem));
 };
+
+export const updateItem = (updateItem) => async (dispatch, getState) => {
+  await dispatch(fetchWrapper(
+    `/api/list/item/${updateItem.id}`,
+    {
+      method: 'POST',
+      body: JSON.stringify(updateItem),
+    }
+  ));
+
+  const { list }= getState();
+  dispatch(
+    setList(list.map((currentListItem) => {
+      if (currentListItem.id !== updateItem.id ) {
+        return currentListItem;
+      }
+      return {
+        ...updateItem
+      };
+    }))
+  );
+};
+
+export const deleteItem = (itemId) => async (dispatch, getState) => {
+  await dispatch(fetchWrapper(
+    `/api/list/item/${itemId}`,
+    {
+      method: 'DELETE',
+      body: '{}',
+    }
+  ));
+
+  const { list } = getState();
+  dispatch(
+    setList(list.filter(current => current.id !== itemId))
+  );
+}; 

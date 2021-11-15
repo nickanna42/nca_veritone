@@ -39,7 +39,7 @@ if (cluster.isMaster) {
     if (CONFIG.NODE_ENV == 'production' && CONFIG.SSL_CERT && CONFIG.SSL_KEY) {
       app.use(routes.middleware.forceHTTPS);
     }
-    app.use(express.static('public', {'extensions': ['html', 'htm'], index: 'index.html'}));
+    //app.use(express.static('public', {'extensions': ['html', 'htm'], index: 'index.html'}));
     require('./routes/index.js')(app);
 
     // Attach application to webserver

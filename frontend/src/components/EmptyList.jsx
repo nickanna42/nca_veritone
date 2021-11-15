@@ -18,10 +18,10 @@ const EmptyList = () => {
 
   return (
     <>
-      <Grid container sx={{height: '90vh', justifyContent: 'center', alignItems: 'center'}}>
+      <Grid container sx={{height: '90vh', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
         <Grid item>
-          <Card sx={{height: '290px', width: '614px'}}>
-            <Grid container sx={{height: '100%', flexFlow: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <Card variant={'outlined'} sx={{height: '290px', width: '614px'}}>
+            <Grid container sx={{height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start'}}>
               <Grid item>
                 Your Shopping List is empty :(
               </Grid>
@@ -29,6 +29,11 @@ const EmptyList = () => {
                 <Button
                   variant={'contained'}
                   onClick={() => {
+                    setNewItem({
+                      name: '',
+                      description: '',
+                      quantity: 1,
+                    });
                     setDialogOpen(true);
                   }}
                 >

@@ -5,11 +5,13 @@ import { createSelector } from 'reselect';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 
 import { fetchList } from './remoting';
 
 import EmptyList from './components/EmptyList';
+import List from './components/List';
 
 const listSelector = createSelector(
   (state) => state.list,
@@ -30,6 +32,8 @@ const App = () => {
   let pageContents = '';
   if (list.length === 0) {
     pageContents = <EmptyList />;
+  } else {
+    pageContents = <List list={list} />
   }
 
   return (
@@ -41,7 +45,9 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <Box sx={{height: '64px'}} />
-      {pageContents}
+      <Grid container sx={{height: '90vh', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+        {pageContents}
+      </Grid>
     </>
   );
 };
