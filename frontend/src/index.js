@@ -7,9 +7,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Redux and react-redux dependencies
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reduxReducer from './reduxElements/index';
 import { Provider as ReduxProvider } from 'react-redux';
+import thunk from 'redux-thunk';
+
+// Style Helpers
+import '@fontsource/dosis';
+import '@fontsource/nunito';
+import '@fontsource/roboto';
 
 // Material-UI Style provider dependencies
 import { ThemeProvider } from '@mui/material/styles';
@@ -21,7 +27,10 @@ import App from './App';
 // creates the redux store
 const reduxStore = createStore(
   reduxReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // this lets you use the browser redux viewer, if your browser has that plugin
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : ((f) => f)
+  )
 );
 
 // places the react application on the DOM

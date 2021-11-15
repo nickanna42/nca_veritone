@@ -9,7 +9,7 @@ const addItem = async (req, res, next) => {
 
     const client = await dbPool.connect();
     const dataInsert = await client.query(
-        'INSERT INTO ShoppingList(name, description, quantity) VALUES ($1, $2, $3) RETURNING id',
+        'INSERT INTO "ShoppingList" (name, description, quantity) VALUES ($1, $2, $3) RETURNING id',
         [ req.body.name, req.body.description, req.body.quantity ]
     );
     client.release();

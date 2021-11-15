@@ -10,7 +10,7 @@ const updateItem = async (req, res, next) => {
 
   const client = await dbPool.connect();
   await client.query(
-    'UPDATE ShoppingList SET name = $1, description = $2, quantity = $3 WHERE id = $4',
+    'UPDATE "ShoppingList" SET name = $1, description = $2, quantity = $3 WHERE id = $4',
     [req.body.name, req.body.description, req.body.quantity, req.params.itemId]
     );
   client.release();

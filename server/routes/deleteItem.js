@@ -6,7 +6,7 @@ const deleteItem = async (req, res, next) => {
 
   const client = await dbPool.connect();
   await client.query(
-    'DELETE FROM ShoppingList WHERE id = $1',
+    'DELETE FROM "ShoppingList" WHERE id = $1',
     [req.params.itemId]
   );
   client.release();
