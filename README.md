@@ -16,6 +16,11 @@ In a terminal, run once to download js deps:
 ### Run
 In a terminal, run:
 
+    npm run database-start
+
+In a another terminal, at the same time, run:
+
+    npm run migration
     npm run server-start
 
 In another terminal, at the same time, run:
