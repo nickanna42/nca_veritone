@@ -14,7 +14,7 @@ const DeleteDialog = ({pendingDelete, setPendingDelete}) => {
   const dispatch = useDispatch();
   return (
     <Dialog
-      open={pendingDelete}
+      open={pendingDelete ? true : false}
       onClose={() => setPendingDelete(null)}
     >
       <Card>
