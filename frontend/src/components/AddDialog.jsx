@@ -74,8 +74,10 @@ const AddDialog = ({open, openSet, value, setValue, submitFunction, addOrEdit='a
               label={'Quantity'}
               value={value.quantity.toString()}
               type={'number'}
-              min={0}
-              step={1}
+              inputProps={{
+                min: 0,
+                step: 1,
+              }}
               onChange={(event) => {
                 setValue({
                   ...value,

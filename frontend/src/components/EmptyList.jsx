@@ -21,7 +21,7 @@ const EmptyList = () => {
       <Grid container sx={{height: '90vh', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
         <Grid item>
           <Card variant={'outlined'} sx={{height: '290px', width: '614px'}}>
-            <Grid container sx={{height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start'}}>
+            <Grid container sx={{height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Grid item>
                 Your Shopping List is empty :(
               </Grid>
